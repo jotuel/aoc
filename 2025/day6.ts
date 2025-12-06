@@ -13,7 +13,6 @@ for (let i = 0; lines[lines.length - 1][i]; i++) {
         if (!line[i] || line[i] === "+") break;
         part1[index] += parseInt(line.slice(i));
       }
-      console.log(part1[index]);
       index++;
       break;
     case "*":
@@ -22,7 +21,6 @@ for (let i = 0; lines[lines.length - 1][i]; i++) {
         if (!line[i] || line[i] === "*") break;
         part1[index] *= parseInt(line.slice(i));
       }
-      console.log(part1[index]);
       index++;
       break;
     default:

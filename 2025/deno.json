@@ -3,6 +3,6 @@
     "@std/csv": "jsr:@std/csv@^1.0.6"
   }
   "tasks": {
-    "start": "deno run --allow-read --allow-write --allow-net --unstable",
+    "start": "deno run --allow-read --allow-write --allow-net",
   }
 }
