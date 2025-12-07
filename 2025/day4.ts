@@ -1,4 +1,4 @@
-const bytes = await Deno.readFile("/home/jwnz/Git/aoc/2026/day4.txt");
+const bytes = await Deno.readFile("/home/jwnz/Git/aoc/2025/day4.txt");
 const text = new TextDecoder().decode(bytes);
 let lines = text.split("\n").map((line) => line.trim());
 

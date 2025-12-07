@@ -1,5 +1,5 @@
 import { parse } from "@std/csv/parse";
-const bytes = await Deno.readFile("/home/jwnz/Git/aoc/2026/day2.txt");
+const bytes = await Deno.readFile("/home/jwnz/Git/aoc/2025/day2.txt");
 const text = new TextDecoder().decode(bytes);
 const lines = parse(text, { skipFirstRow: false });
 
