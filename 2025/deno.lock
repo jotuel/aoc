@@ -1,10 +1,19 @@
 {
   "version": "5",
   "specifiers": {
+    "jsr:@std/bytes@^1.0.6": "1.0.6",
+    "jsr:@std/cache@~0.2.1": "0.2.1",
     "jsr:@std/csv@^1.0.6": "1.0.6",
-    "jsr:@std/streams@^1.0.9": "1.0.14"
+    "jsr:@std/streams@^1.0.9": "1.0.14",
+    "npm:memoizerific@^1.11.3": "1.11.3"
   },
   "jsr": {
+    "@std/bytes@1.0.6": {
+      "integrity": "f6ac6adbd8ccd99314045f5703e23af0a68d7f7e58364b47d2c7f408aeb5820a"
+    },
+    "@std/cache@0.2.1": {
+      "integrity": "b6f1abfd118d35b1c4ca90f2b3f4c709a2014ae368f244bdc7533bf1c169d759"
+    },
     "@std/csv@1.0.6": {
       "integrity": "52ef0e62799a0028d278fa04762f17f9bd263fad9a8e7f98c14fbd371d62d9fd",
       "dependencies": [
@@ -12,12 +21,28 @@
       ]
     },
     "@std/streams@1.0.14": {
-      "integrity": "c0df6cdd73bd4bbcbe4baa89e323b88418c90ceb2d926f95aa99bdcdbfca2411"
+      "integrity": "c0df6cdd73bd4bbcbe4baa89e323b88418c90ceb2d926f95aa99bdcdbfca2411",
+      "dependencies": [
+        "jsr:@std/bytes"
+      ]
+    }
+  },
+  "npm": {
+    "map-or-similar@1.5.0": {
+      "integrity": "sha512-0aF7ZmVon1igznGI4VS30yugpduQW3y3GkcgGJOp7d8x8QrizhigUxjI/m2UojsXXto+jLAH3KSz+xOJTiORjg=="
+    },
+    "memoizerific@1.11.3": {
+      "integrity": "sha512-/EuHYwAPdLtXwAwSZkh/Gutery6pD2KYd44oQLhAvQp/50mpyduZh8Q7PYHXTCJ+wuXxt7oij2LXyIJOOYFPog==",
+      "dependencies": [
+        "map-or-similar"
+      ]
     }
   },
   "workspace": {
     "dependencies": [
-      "jsr:@std/csv@^1.0.6"
+      "jsr:@std/cache@~0.2.1",
+      "jsr:@std/csv@^1.0.6",
+      "npm:memoizerific@^1.11.3"
     ]
   }
 }

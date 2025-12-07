@@ -1,24 +1,18 @@
-const bytes = await Deno.readFile("/home/jwnz/Git/aoc/2025/day7.txt");
+import { memoize, LruCache, type MemoizationCacheResult } from "@std/cache";
+const bytes = await Deno.readFile("/home/jwnz/Git/aoc/2025/testset.txt");
 const text = new TextDecoder().decode(bytes);
 const lines = text.split("\n").map((line) => line.trim());
 const start = lines[0].indexOf("S");
-const set = new Set<[number, number]>();
-console.log(start, lines);
-function lightsOn(y: number, x: number): number {
-  if (lines[y][x] === "^") {
-    if (set.has([y, x + 1]) && set.has([y, x - 1])) {
-      return 0;
-    } else if (set.has([y, x + 1])) {
-      return lightsOn(y, x - 1);
-    } else if (set.has([y, x - 1])) {
-      return lightsOn(y, x + 1);
-    } else {
-      return lightsOn(y, x + 1) + lightsOn(y, x - 1);
-    }
-  } else set.add([y, x]);
-  return y + 1 < lines.length ? lightsOn(y + 1, x) : 1;
-}
 
-let res = 1;
-res += lightsOn(1, start) / 2;
-console.log(res, set);
+const cache = new LruCache<string, MemoizationCacheResult<number>>(1000);
+
+const rec = memoize(
+  (x: number, y: number): number => {
+    if (!(0 <= x && x < lines.length) || !(0 <= y && y < lines[0].length))
+      return 1;
+    return lines[x][y] !== "^" ? rec(x + 1, y) : rec(x, y + 1) + rec(x, y - 1);
+  },
+  { cache },
+);
+const res = rec(0, start);
+console.log(res);

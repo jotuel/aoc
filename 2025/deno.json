@@ -1,6 +1,8 @@
 {
   "imports": {
-    "@std/csv": "jsr:@std/csv@^1.0.6"
+    "@std/cache": "jsr:@std/cache@^0.2.1",
+    "@std/csv": "jsr:@std/csv@^1.0.6",
+    "memoizerific": "npm:memoizerific@^1.11.3"
   }
   "tasks": {
     "start": "deno run --allow-read --allow-write --allow-net",
