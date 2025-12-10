@@ -27,17 +27,35 @@ function len(v: Vec3): number {
   return Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
 }
 
-let shortest = 10000000;
 let networks = new Map<number, Set<Vec3>>();
-for (const i of arr) {
-  for (const j of arr) {
-    if (i === j) continue;
-    const vec = sub(i, j);
-    const cmp = len(vec);
-    if (shortest > cmp) {
-      shortest = cmp;
+let establishedConnectionDist = new Set<number>();
+for (let added = 0; added < arr.length; added++) {
+  let shortest = 10000000;
+  for (const i of arr) {
+    for (const j of arr) {
+      if (i === j) continue;
+      const vec = sub(i, j);
+      const cmp = len(vec);
+      if (shortest > cmp && !establishedConnectionDist.has(cmp)) {
+        shortest = cmp;
+      }
     }
+  }
+  establishedConnectionDist.add(shortest);
+  let bool = false;
+  for (let k = 0; k < networks.size; k++) {
+    if (networks.get(k)?.has(i) || networks.get(k)?.has(j)) {
+      networks.get(k)?.add(i);
+      networks.get(k)?.add(j);
+      bool = true;
+      break;
+    }
+  }
+  if (!bool) {
+    networks.set(networks.size, new Set<Vec3>());
+    networks.get(networks.size - 1)?.add(i);
+    networks.get(networks.size - 1)?.add(j);
   }
 }
 
-console.log(shortest);
+console.log(networks);
